@@ -1,11 +1,13 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evely Silva | Eng. Computação | Front-End</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto+Mono:wght@300;400&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <style>
         :root {
@@ -50,7 +52,6 @@
         .glow-1 { top: -20%; left: -20%; }
         .glow-2 { bottom: -20%; right: -20%; background: radial-gradient(circle, rgba(236, 72, 153, 0.05) 0%, rgba(0, 0, 0, 0) 70%); }
 
-        /* Botão Rolar para o Topo */
         #back-to-top {
             position: fixed;
             bottom: 30px;
@@ -74,11 +75,7 @@
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
         }
 
-        #back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
+        #back-to-top.visible { opacity: 1; visibility: visible; }
         #back-to-top:hover {
             background: var(--primary);
             color: var(--bg-dark);
@@ -118,12 +115,7 @@
         .dot { width: 12px; height: 12px; border-radius: 50%; }
         .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
 
-        .terminal-body {
-            padding: 20px;
-            color: #a6accd;
-            font-size: 14px;
-        }
-
+        .terminal-body { padding: 20px; color: #a6accd; font-size: 14px; }
         .cmd { color: var(--primary); }
         .str { color: var(--accent); }
         .comment { color: #676e95; }
@@ -146,10 +138,7 @@
             vertical-align: middle;
         }
 
-        .robot-container {
-            margin-top: 40px;
-            position: relative;
-        }
+        .robot-container { margin-top: 40px; position: relative; }
         .robot-container img {
             width: 180px;
             filter: drop-shadow(0 0 15px var(--primary));
@@ -168,16 +157,12 @@
             position: absolute;
             bottom: 30px;
             font-size: 24px;
-            color: var(--comment);
+            color: #676e95;
             animation: bounce 2s infinite;
             text-decoration: none;
         }
 
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 40px 20px;
-        }
+        .container { max-width: 1000px; margin: auto; padding: 40px 20px; }
 
         h2.section-title {
             font-family: var(--font-code);
@@ -207,12 +192,7 @@
             position: relative;
             overflow: hidden;
         }
-        .about-content p {
-            margin-bottom: 20px;
-            text-align: justify;
-            font-size: 1.05rem;
-            color: #cbd5e1;
-        }
+        .about-content p { margin-bottom: 20px; text-align: justify; font-size: 1.05rem; color: #cbd5e1; }
         .about-content b { color: var(--primary); font-weight: 600; }
 
         .about-content::before {
@@ -255,22 +235,13 @@
             transform-style: preserve-3d;
             perspective: 1000px;
         }
-
         .project-card:hover { border-color: var(--secondary); box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
 
-        .project-info {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            transform: translateZ(25px);
-        }
-
+        .project-info { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; transform: translateZ(25px); }
         .project-card h3 { color: #fff; margin-bottom: 15px; font-size: 1.3rem; }
-        .project-card p { font-size: 14.5px; color: #a6accd; margin-bottom: 25px; flex-grow: 1; text-align: justify;}
+        .project-card p { font-size: 14.5px; color: #a6accd; margin-bottom: 25px; flex-grow: 1; text-align: justify; }
 
-        .btn-container { display: flex; gap: 12px; flex-wrap: wrap; }
-
+        .btn-container { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
         .btn {
             display: inline-block;
             padding: 12px 24px;
@@ -283,17 +254,15 @@
             letter-spacing: 1px;
             transition: 0.3s;
             position: relative;
-            overflow: hidden;
             z-index: 1;
-        }
-
-        .btn-primary {
             background: transparent;
-            color: var(--primary);
-            border: 1px solid var(--primary);
+            cursor: pointer;
         }
-
+        .btn-primary { color: var(--primary); border: 1px solid var(--primary); }
         .btn-primary:hover { color: #fff; box-shadow: 0 0 25px rgba(0, 242, 254, 0.6); }
+
+        #lp-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #f9fafb; z-index: 9999; display: none; overflow-y: auto; color: #333; }
+        .close-lp { position: fixed; top: 20px; right: 20px; background: #111; color: white; padding: 10px 20px; border-radius: 50px; cursor: pointer; z-index: 10000; font-weight: bold; }
 
         @keyframes blink { 50% { opacity: 0; } }
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
@@ -304,14 +273,12 @@
             .terminal-body { font-size: 12px; padding: 15px; }
             h1.name { font-size: 2rem; }
             .container { padding: 30px 15px; }
-            .about-content { padding: 25px; }
-            #back-to-top { bottom: 20px; right: 20px; width: 45px; height: 45px; }
         }
     </style>
 </head>
 <body>
 
-    <button id="back-to-top" onclick="window.scrollTo(0,0)" title="Voltar ao Topo">▲</button>
+    <button id="back-to-top" onclick="window.scrollTo(0,0)">▲</button>
 
     <canvas id="particle-canvas"></canvas>
     <div class="ambient-glow glow-1"></div>
@@ -351,9 +318,9 @@
         <section id="about">
             <h2 class="section-title">Sobre Mim</h2>
             <div class="about-content">
-                <p>Sou <b>graduanda em Engenharia da Computação pela UNIVESP</b> (10º semestre), focada em unir a lógica estruturada da engenharia à criatividade do desenvolvimento moderno. Minha base técnica permite que eu transite entre hardware e software com precisão.</p>
-                <p>Durante minha trajetória acadêmica e técnica, venho aplicando <b>HTML5, CSS3, JavaScript (ES6+) e Bootstrap</b> para construir interfaces responsivas, além de utilizar <b>Python e MySQL</b> no desenvolvimento de sistemas e análise de dados estruturados.</p>
-                <p> Meu foco está em transformar requisitos técnicos em soluções digitais que gerem valor real e simplifiquem a vida do usuário final.</p>
+                <p>Sou <b>graduanda em Engenharia da Computação pela UNIVESP</b> (10º semestre), focada em unir a lógica estruturada da engenharia à criatividade do desenvolvimento moderno.</p>
+                <p>Durante minha trajetória, venho aplicando <b>HTML5, CSS3, JavaScript (ES6+) e Bootstrap</b> para construir interfaces responsivas, além de utilizar <b>Python e MySQL</b> no desenvolvimento de sistemas.</p>
+                <p>Meu foco está em transformar requisitos técnicos em soluções digitais que gerem valor real e engajamento.</p>
             </div>
         </section>
 
@@ -361,53 +328,70 @@
             <h2 class="section-title">Tech Stack</h2>
             <div class="skills-grid">
                 <span class="skill-tag">JavaScript</span> 
-                <span class="skill-tag">Python (Pandas/Matplotlib)</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Tailwind CSS</span>
+                <span class="skill-tag">HTML5 / CSS3</span>
+                <span class="skill-tag">Bootstrap 5</span>
                 <span class="skill-tag">MySQL</span>
-                <span class="skill-tag">HTML5 / CSS</span>
-                <span class="skill-tag">Bootstrap</span>
-                <span class="skill-tag">React.js</span> 
                 <span class="skill-tag">Git / GitHub</span>
-                <span class="skill-tag">Figma (UI Design)</span>
+                <span class="skill-tag">Figma (UX/UI)</span>
             </div>
         </section>
 
         <section id="projects">
             <h2 class="section-title">Projetos Selecionados</h2>
             <div class="projects-grid">
-                <div class="project-card js-tilt">
+                
+                <div class="project-card">
                     <div class="project-info">
                         <h3>Dashboard de Vendas</h3>
-                        <p>Sistema de dashboard desenvolvido com foco em simular um ambiente real de análise de vendas, com geração dinâmica de dados, gráficos interativos e persistência no navegador.</p>
+                        <p>Sistema de dashboard desenvolvido com foco em simular um ambiente real de análise de vendas, com geração dinâmica de dados, gráficos interativos e persistência no navegador.Interface responsiva com foco em visualização de métricas.</p>
                         <div class="btn-container">
                             <a href="https://evely4.github.io/dashboard/" target="_blank" class="btn btn-primary">Live Demo</a>
                             <span class="skill-tag">JS</span> <span class="skill-tag">Bootstrap</span>
                         </div>
                     </div>
                 </div>
+
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Página Positivus</h3>
+                        <p>Landing Page Neo-Brutalista focada em fidelidade visual ao Figma e responsividade móvel otimizada.</p>
+                        <div class="btn-container">
+                            <a href="https://maria-evely-positivus.netlify.app/" target="_blank" class="btn btn-primary">Live Demo</a>
+                            <span class="skill-tag">HTML/CSS</span> <span class="skill-tag">UX/UI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Landing Page de Curso Python</h3>
+                        <p>Aprenda Python do zero e construa projetos reais com IA.</p>
+                        <div class="btn-container">
+                            <a href=" https://pasta-2-projeto-positivus.netlify.app/" class="btn btn-primary">Ver Código</a>
+                            <span class="skill-tag">Python</span> <span class="skill-tag">Automate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-info">
+                        <h3>Landing Page - Python e IA</h3>
+                        <p>Landing page desenvolvida com foco em conversão, utilizando estrutura de marketing digital, animações, contadores dinâmicos e integração com WhatsApp para captação de leads.</p>
+                        <div class="btn-container">
+                            <button onclick="abrirLP()" class="btn btn-primary">Ver Projeto</button>
+                            <span class="skill-tag">HTML Tailwind CSS JavaScript Python</span> <span class="skill-tag">IA</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- PROJETO 2 (NOVO - CORRETO) -->
-        <div class="project-card js-tilt">
-            <div class="project-info">
-                <h3>Landing Page - Python e IA</h3>
-                <p>
-                    Landing page desenvolvida com foco em conversão, utilizando estrutura de marketing,
-                    animações, contadores dinâmicos e integração com WhatsApp para captação de leads.
-                </p>
-
-                <div class="btn-container">
-                    <a href="https://evely4.github.io/landing-page-python-ia/" target="_blank" class="btn btn-primary">
-                        Live Demo
-                    </a>
-
-                    <a href="https://github.com/Evely4/landing-page-python-ia" target="_blank" class="btn btn-primary">
-                        Código
-                    </a>
         </section>
 
         <section id="contact">
             <h2 class="section-title">Contato</h2>
             <div class="about-content">
-                <p style="margin-bottom: 25px;">Estou em busca da minha primeira oportunidade oficial na área de tecnologia e aberta a colaborações em projetos inovadores. Vamos conversar?</p>
+                <p style="margin-bottom: 25px;">Estou em busca da minha primeira oportunidade oficial na área de tecnologia. Vamos conversar?</p>
                 <div class="btn-container">
                     <a href="https://github.com/Evely4" target="_blank" class="btn btn-primary">GitHub</a>
                     <a href="https://www.linkedin.com/in/maria-evely-silva-a98593217/" target="_blank" class="btn btn-primary">LinkedIn</a>
@@ -417,11 +401,50 @@
         </section>
     </main>
 
+    <div id="lp-modal">
+        <div class="close-lp" onclick="fecharLP()">FECHAR [X]</div>
+        <div class="font-sans text-gray-900 bg-white min-h-screen">
+             <nav class="bg-white shadow px-6 py-4 flex justify-between items-center">
+                <h1 class="font-bold text-xl text-gray-800">Python & IA</h1>
+                <button class="bg-green-500 text-white px-4 py-2 rounded-full font-bold">Inscrições Abertas</button>
+            </nav>
+            <header class="bg-slate-900 text-white text-center py-24 px-6">
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6">Aprenda Python e IA do zero</h1>
+                <p class="text-xl mb-8 text-gray-300">A metodologia prática para quem busca autonomia tecnológica.</p>
+                <button class="bg-green-500 hover:bg-green-600 px-8 py-4 rounded-xl text-lg font-bold transition">Quero começar agora</button>
+            </header>
+            <section class="bg-gray-100 py-16 text-center">
+                <h2 class="text-gray-500 uppercase tracking-widest font-bold mb-4">Comunidade Ativa</h2>
+                <div id="contador_lp" class="text-6xl font-black text-green-500">0+</div>
+                <p class="text-gray-600 text-lg mt-2">alunos transformando carreiras</p>
+            </section>
+        </div>
+    </div>
+
     <footer style="text-align: center; padding: 40px; color: #475569; font-family: var(--font-code); font-size: 0.8rem;">
         &copy; 2026 // Desenvolvido por Evely Silva
     </footer>
 
     <script>
+        function abrirLP() { 
+            const modal = document.getElementById('lp-modal');
+            modal.style.display = 'block'; 
+            document.body.style.overflow = 'hidden';
+            animarContador();
+        }
+        function fecharLP() { 
+            document.getElementById('lp-modal').style.display = 'none'; 
+            document.body.style.overflow = 'auto';
+        }
+        function animarContador() {
+            let n = 0;
+            const el = document.getElementById("contador_lp");
+            const int = setInterval(() => {
+                if (n < 5000) { n += 100; el.innerText = n + "+"; } 
+                else clearInterval(int);
+            }, 30);
+        }
+
         const statusText = "Desenvolvedora Front-End em formação";
         let charIndex = 0;
         function typeStatus() {
@@ -431,15 +454,12 @@
                 setTimeout(typeStatus, 55);
             }
         }
+        window.onload = typeStatus;
 
-        // Mostrar/Ocultar botão Back to Top ao rolar
         window.addEventListener('scroll', () => {
             const btn = document.getElementById('back-to-top');
-            if (window.scrollY > 400) {
-                btn.classList.add('visible');
-            } else {
-                btn.classList.remove('visible');
-            }
+            if (window.scrollY > 400) btn.classList.add('visible');
+            else btn.classList.remove('visible');
         });
 
         const observer = new IntersectionObserver((entries) => {
@@ -457,6 +477,7 @@
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
+            initParticles();
         }
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
@@ -493,19 +514,7 @@
             particles.forEach(p => { p.update(); p.draw(); });
             requestAnimationFrame(animateParticles);
         }
-
-        const tilts = document.querySelectorAll('.js-tilt');
-        tilts.forEach(card => {
-            card.addEventListener('mousemove', e => {
-                const cardRect = card.getBoundingClientRect();
-                const rotateX = (-1 * (e.clientY - (cardRect.top + cardRect.height / 2)) / (cardRect.height / 2)) * 8; 
-                const rotateY = ((e.clientX - (cardRect.left + cardRect.width / 2)) / (cardRect.width / 2)) * 8;
-                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            });
-            card.addEventListener('mouseleave', () => card.style.transform = 'rotateX(0deg) rotateY(0deg)');
-        });
-
-        window.onload = () => { typeStatus(); initParticles(); animateParticles(); };
+        animateParticles();
     </script>
 </body>
 </html>
